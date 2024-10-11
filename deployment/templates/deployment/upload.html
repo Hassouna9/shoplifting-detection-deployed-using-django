@@ -1,0 +1,26 @@
+<!-- deployment/templates/deployment/upload.html -->
+
+{% extends 'deployment/base.html' %}
+
+{% block title %}Upload Video{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <div class="upload-box">
+        <h2>Shoplifting Detection</h2>
+        <form method="post" enctype="multipart/form-data" id="upload-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="video">Select Video:</label>
+                <input type="file" id="video" name="video" accept="video/mp4, video/mpeg, video/avi, video/quicktime" required>
+            </div>
+            <button type="submit">Analyze</button>
+        </form>
+        {% if prediction %}
+            <div class="result">
+                <p><strong>Prediction:</strong> {{ prediction }}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
